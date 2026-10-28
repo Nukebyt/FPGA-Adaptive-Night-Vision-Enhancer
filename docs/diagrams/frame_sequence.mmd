@@ -1,0 +1,15 @@
+sequenceDiagram
+  participant PC as Laptop viewer
+  participant D as nv_streamer (HPS)
+  participant M as DDR3 rings
+  participant E as nv_engine (FPGA)
+  PC->>D: FRAME_IN, 640x480 bytes
+  D->>M: copy to input slot n mod 4
+  D->>E: write IN_WR_SEQ = n + 1
+  Note over E: start of vertical blanking:<br/>enabled, controller ready, frame queued?
+  E->>M: dma_rd reads the slot as 64 bit words
+  E->>E: pipeline, statistics, controller
+  E->>M: dma_wr writes the output slot
+  E-->>D: OUT_SEQ increments (pixels written, statistics final)
+  D->>M: read output slot, read telemetry registers
+  D-->>PC: FRAME_OUT, 176 B telemetry + pixels

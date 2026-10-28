@@ -1,0 +1,10 @@
+flowchart TD
+  A["frame finished: mean of the tone mapped output,<br/>p1, p99, noise sigma"] --> B["e = log2(128) - log2(mean)"]
+  B --> C{"abs(e) under 5 percent?"}
+  C -- yes --> D["step = 0, deadband"]
+  C -- no --> E["step = e / 2, limited to -0.58 / +0.29 octave"]
+  D --> F["log2 gain += step"]
+  E --> F
+  F --> G["clamp 0 .. min(6, log2(255 / max(p99 - black, 8)))<br/>highlight headroom"]
+  G --> H["rebuild tone LUT, black level,<br/>noise coupled denoise and sharpen strengths"]
+  H --> I["applied at the first pixel of the next frame"]

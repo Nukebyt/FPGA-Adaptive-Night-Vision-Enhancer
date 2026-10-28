@@ -1,0 +1,9 @@
+flowchart TB
+  F["float design model<br/>model/enh.py"] --> I1["integer model, vectorised<br/>pipeline_int.py"]
+  F --> I2["integer model, scalar<br/>pipeline_ref.py"]
+  I1 <-->|"must agree, 40 tests"| I2
+  I1 --> VEC["exported vectors<br/>tb/vec"]
+  VEC --> TB["self checking testbenches<br/>random gaps and memory stalls"]
+  TB --> FI["fault injection<br/>44 single point mutants"]
+  TB --> SYN["Quartus: map, fit, STA"]
+  SYN --> HW["board: Gate 0 reproducible,<br/>Gate 1 equals the model"]

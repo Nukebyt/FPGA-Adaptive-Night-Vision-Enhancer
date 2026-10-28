@@ -1,0 +1,20 @@
+flowchart TB
+  subgraph PC["Laptop"]
+    V["nv_viewer.py<br/>live view, --save, --dump"]
+    E["evaluate_board.py<br/>run_hw_compare.py"]
+  end
+  subgraph SOC["Cyclone V SoC on the DE10-Standard"]
+    subgraph HPS["HPS: dual Cortex-A9, Linux"]
+      D["nv_streamer, C daemon<br/>TCP port 5002"]
+      DDR[("HPS DDR3<br/>input ring 4 x 512 KiB<br/>output ring 4 x 512 KiB")]
+    end
+    subgraph FPGA["FPGA fabric, one 25 MHz clock"]
+      CSR["nv_csr<br/>control, status, telemetry"]
+      RD["dma_rd"] --> FIFO["fifo_64to8"] --> CORE["nv_core<br/>pipeline + controller"] --> WR["dma_wr"]
+    end
+  end
+  V <-->|"Ethernet, TCP<br/>640x480 frames + 176 B telemetry"| D
+  D -->|"/dev/mem, uncached copy"| DDR
+  D <-->|"lightweight bridge<br/>0xFF210000"| CSR
+  DDR -->|"F2H SDRAM port"| RD
+  WR -->|"F2H SDRAM port"| DDR

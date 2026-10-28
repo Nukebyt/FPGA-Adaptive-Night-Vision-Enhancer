@@ -4,7 +4,7 @@ Real-time low-light video enhancement on a **Terasic DE10-Standard** (Intel Cycl
 
 ![raw camera frame next to the FPGA output, dim room](docs/media/demo_dimroom.gif)
 
-*Left: the camera's raw frame (brightened x4 for display only). Right: the output of the FPGA, captured from the board. ISO 2000, 1/60 s, 640x480 grey scale.*
+*Left: the camera's raw frame exactly as recorded. Right: the output of the FPGA, captured from the board. ISO 2000, 1/60 s, 640x480 grey scale.*
 
 ## What it does
 
@@ -27,6 +27,12 @@ Real-time low-light video enhancement on a **Terasic DE10-Standard** (Intel Cycl
 
 ## Demo
 
+**Brightening a real low-light image** (LOL dataset, processed by the FPGA on the board): input, FPGA output and ground truth side by side. The controller reaches the target brightness within a frame or two.
+
+![LOL brightening](docs/media/demo_lol_brightening.gif)
+
+**Your own night clips** (raw is shown exactly as recorded, not brightened):
+
 | Lamp switched on and off, gain falls and recovers | Very dark scene |
 |---|---|
 | ![lamp step](docs/media/demo_lampstep.gif) | ![very dark](docs/media/demo_verydark.gif) |
@@ -35,56 +41,25 @@ Real-time low-light video enhancement on a **Terasic DE10-Standard** (Intel Cycl
 |---|---|
 | ![motion](docs/media/demo_motion.gif) | ![dim room](docs/media/demo_dimroom.gif) |
 
-Full-quality H.264 versions: [lamp step](docs/media/demo_lampstep.mp4), [dim room](docs/media/demo_dimroom.mp4), [very dark](docs/media/demo_verydark.mp4), [motion](docs/media/demo_motion.mp4). Every frame in these clips was produced by the FPGA.
+Full-quality H.264 versions: [LOL brightening](docs/media/demo_lol_brightening.mp4), [lamp step](docs/media/demo_lampstep.mp4), [dim room](docs/media/demo_dimroom.mp4), [very dark](docs/media/demo_verydark.mp4), [motion](docs/media/demo_motion.mp4). Every frame in these clips was produced by the FPGA.
 
 ## Architecture
 
+The diagrams are Mermaid sources in [docs/diagrams/](docs/diagrams/), pre-rendered to images by `scripts/render_diagrams.py` so they show up in every viewer.
+
 ### System
 
-```mermaid
-flowchart LR
-  subgraph PC["Laptop"]
-    V["nv_viewer.py<br/>live view, --save, --dump"]
-    E["evaluate_board.py<br/>run_hw_compare.py"]
-  end
-  subgraph SOC["Cyclone V SoC on the DE10-Standard"]
-    subgraph HPS["HPS: dual Cortex-A9, Linux"]
-      D["nv_streamer, C daemon<br/>TCP port 5002"]
-      DDR[("HPS DDR3<br/>input ring 4 x 512 KiB<br/>output ring 4 x 512 KiB")]
-    end
-    subgraph FPGA["FPGA fabric, one 25 MHz clock"]
-      CSR["nv_csr<br/>control, status, telemetry"]
-      RD["dma_rd"] --> FIFO["fifo_64to8"] --> CORE["nv_core<br/>pipeline + controller"] --> WR["dma_wr"]
-    end
-  end
-  V <-->|"Ethernet, TCP<br/>640x480 frames + 176 B telemetry"| D
-  D -->|"/dev/mem, uncached copy"| DDR
-  D <-->|"lightweight bridge<br/>0xFF210000"| CSR
-  DDR -->|"F2H SDRAM port"| RD
-  WR -->|"F2H SDRAM port"| DDR
-```
+![System architecture: laptop, HPS and FPGA](docs/img/diagram_system.png)
+
+<sub>Diagram source: [docs/diagrams/system.mmd](docs/diagrams/system.mmd) (Mermaid).</sub>
 
 There is no VGA monitor in this setup, so the display boundary is the network. The HPS image has no usable Python, so a small C daemon owns `/dev/mem` and the laptop talks a simple framed TCP protocol ([docs/streaming.md](docs/streaming.md)).
 
 ### Enhancement pipeline (`rtl/nv_core.v`)
 
-```mermaid
-flowchart LR
-  IN["raw pixel stream<br/>8 bit"] --> T["temporal filter<br/>SAD, motion ROM, alpha blend"]
-  FS[("frame store<br/>10 bit, on chip<br/>previous output")] <--> T
-  T --> S["spatial sigma filter<br/>3x3 window"]
-  S --> M["tone map LUT<br/>1024 entries, double buffered"]
-  M --> H["unsharp mask<br/>with coring"]
-  H --> OUT["enhanced pixel stream"]
-  IN --> ST["statistics<br/>256 bin histogram<br/>noise estimate"]
-  M --> OM["output mean"]
-  ST --> C["controller<br/>runs in blanking"]
-  OM --> C
-  C -.->|"next frame: LUT, strengths"| T
-  C -.-> S
-  C -.-> M
-  C -.-> H
-```
+![Enhancement pipeline and controller feedback](docs/img/diagram_pipeline.png)
+
+<sub>Diagram source: [docs/diagrams/pipeline.mmd](docs/diagrams/pipeline.mmd) (Mermaid).</sub>
 
 * **Temporal** (`nv_temporal.v`): the 3x3 sum of absolute differences against the stored previous output picks a blend factor from a motion ROM. Still areas average over time, moving areas pass through (no ghost trail). The frame store is one 10-bit (Q8.2) frame in on-chip RAM, updated in place.
 * **Spatial** (`nv_spatial.v`, `win3x3.v`): a sigma filter that only averages neighbours within a noise-dependent threshold, so edges survive.
@@ -94,40 +69,17 @@ flowchart LR
 
 ### Controller (`rtl/nv_ctrl.v`, design in [docs/controller.md](docs/controller.md))
 
-```mermaid
-flowchart TD
-  A["frame finished: mean of the tone mapped output,<br/>p1, p99, noise sigma"] --> B["e = log2(128) - log2(mean)"]
-  B --> C{"abs(e) under 5 percent?"}
-  C -- yes --> D["step = 0, deadband"]
-  C -- no --> E["step = e / 2, limited to -0.58 / +0.29 octave"]
-  D --> F["log2 gain += step"]
-  E --> F
-  F --> G["clamp 0 .. min(6, log2(255 / max(p99 - black, 8)))<br/>highlight headroom"]
-  G --> H["rebuild tone LUT, black level,<br/>noise coupled denoise and sharpen strengths"]
-  H --> I["applied at the first pixel of the next frame"]
-```
+![Controller decision flow](docs/img/diagram_controller.png)
+
+<sub>Diagram source: [docs/diagrams/controller.mmd](docs/diagrams/controller.mmd) (Mermaid).</sub>
 
 The loop is first-order with one frame of delay and contraction 0.8 per frame, so it cannot oscillate; a deliberately over-aggressive setting (k = 5) was measured to flicker between two gains every frame ([step response](docs/results/step_response_moderate.md)). The highlight clamp is the reason the effective maximum gain is about x32, not the nominal x64.
 
 ### One frame, end to end
 
-```mermaid
-sequenceDiagram
-  participant PC as Laptop viewer
-  participant D as nv_streamer (HPS)
-  participant M as DDR3 rings
-  participant E as nv_engine (FPGA)
-  PC->>D: FRAME_IN, 640x480 bytes
-  D->>M: copy to input slot n mod 4
-  D->>E: write IN_WR_SEQ = n + 1
-  Note over E: start of vertical blanking:<br/>enabled, controller ready, frame queued?
-  E->>M: dma_rd reads the slot as 64 bit words
-  E->>E: pipeline, statistics, controller
-  E->>M: dma_wr writes the output slot
-  E-->>D: OUT_SEQ increments (pixels written, statistics final)
-  D->>M: read output slot, read telemetry registers
-  D-->>PC: FRAME_OUT, 176 B telemetry + pixels
-```
+![One frame from laptop to board and back](docs/img/diagram_frame_sequence.png)
+
+<sub>Diagram source: [docs/diagrams/frame_sequence.mmd](docs/diagrams/frame_sequence.mmd) (Mermaid).</sub>
 
 At most 3 frames are in flight, so memory is bounded and latency stays under about 4 frame times. The register map is in [docs/csr_map.md](docs/csr_map.md).
 
@@ -223,17 +175,9 @@ A lamp is switched on in steps and off again. The controller gain below was read
 
 ## Verification
 
-```mermaid
-flowchart LR
-  F["float design model<br/>model/enh.py"] --> I1["integer model, vectorised<br/>pipeline_int.py"]
-  F --> I2["integer model, scalar<br/>pipeline_ref.py"]
-  I1 <-->|"must agree, 40 tests"| I2
-  I1 --> VEC["exported vectors<br/>tb/vec"]
-  VEC --> TB["self checking testbenches<br/>random gaps and memory stalls"]
-  TB --> FI["fault injection<br/>44 single point mutants"]
-  TB --> SYN["Quartus: map, fit, STA"]
-  SYN --> HW["board: Gate 0 reproducible,<br/>Gate 1 equals the model"]
-```
+![Verification flow](docs/img/diagram_verification.png)
+
+<sub>Diagram source: [docs/diagrams/verification.mmd](docs/diagrams/verification.mmd) (Mermaid).</sub>
 
 * **Two independent golden models** (a vectorised and a scalar implementation, written separately) agree on every test; the RTL is compared to them pixel for pixel. The Python side has 46 tests (`pytest`).
 * **Testbenches** drive random valid gaps (0 to 80 %), memory wait states up to 70 %, queued frames and a reset in the middle, for the core, the controller (8,840 cases plus an 8,000-case soak) and the whole engine.

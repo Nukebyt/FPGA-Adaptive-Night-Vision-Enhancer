@@ -1,0 +1,15 @@
+flowchart TB
+  IN["raw pixel stream<br/>8 bit"] --> T["temporal filter<br/>SAD, motion ROM, alpha blend"]
+  FS[("frame store<br/>10 bit, on chip<br/>previous output")] <--> T
+  T --> S["spatial sigma filter<br/>3x3 window"]
+  S --> M["tone map LUT<br/>1024 entries, double buffered"]
+  M --> H["unsharp mask<br/>with coring"]
+  H --> OUT["enhanced pixel stream"]
+  IN --> ST["statistics<br/>256 bin histogram<br/>noise estimate"]
+  M --> OM["output mean"]
+  ST --> C["controller<br/>runs in blanking"]
+  OM --> C
+  C -.->|"next frame: LUT, strengths"| T
+  C -.-> S
+  C -.-> M
+  C -.-> H
