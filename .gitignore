@@ -1,0 +1,42 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/
+# Quartus build products (bitstreams are archived deliberately under releases/, not committed here)
+quartus/**/db/
+quartus/**/incremental_db/
+quartus/**/output_files/
+quartus/**/qdb/
+quartus/**/.qsys_edit/
+*.rpt
+*.smsg
+# simulation products
+*.vcd
+*.vvp
+*.wlf
+work/
+transcript
+docs/results/*.npy
+quartus/**/logs/
+quartus/**/*.sof
+quartus/**/*.rbf
+quartus/**/*.summary
+quartus/**/*.jdi
+quartus/**/*.pin
+quartus/**/*.sld
+quartus/**/c5_pin_model_dump.txt
+tb/vec/
+# local captures and scratch files
+backups/
+hw_run*.npz
+viewer.out
+NUL
+# superseded or bulky recordings (regenerate with scripts/nv_viewer.py --save / scripts/make_demo_media.py)
+docs/results/hw/
+docs/results/demo_*.mp4
+# generated Platform Designer by-products that nothing in the build reads
+quartus/**/*.svd
+quartus/**/*.regmap
+quartus/**/*.debuginfo
+quartus/soc/soc_system/soc_system.xml

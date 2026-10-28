@@ -1,0 +1,232 @@
+2026.10.27.10:59:51 Info: Saving generation log to F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/soc_system_generation.rpt
+2026.10.27.10:59:51 Info: Starting: <b>Create HDL design files for synthesis</b>
+2026.10.27.10:59:51 Info: qsys-generate F:\Projects\FPGA-Adaptive-Night-Vision\quartus\soc\soc_system.qsys --synthesis=VERILOG --output-directory=F:\Projects\FPGA-Adaptive-Night-Vision\quartus\soc\soc_system\synthesis --family="Cyclone V" --part=5CSXFC6D6F31C6
+2026.10.27.10:59:51 Info: Loading soc/soc_system.qsys
+2026.10.27.10:59:52 Info: Reading input file
+2026.10.27.10:59:52 Info: Adding ILC [interrupt_latency_counter 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module ILC
+2026.10.27.10:59:52 Info: Adding button_pio [altera_avalon_pio 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module button_pio
+2026.10.27.10:59:52 Info: Adding clk_0 [clock_source 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module clk_0
+2026.10.27.10:59:52 Info: Adding dipsw_pio [altera_avalon_pio 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module dipsw_pio
+2026.10.27.10:59:52 Info: Adding f2sdram_only_master [altera_jtag_avalon_master 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module f2sdram_only_master
+2026.10.27.10:59:52 Info: Adding fpga_only_master [altera_jtag_avalon_master 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module fpga_only_master
+2026.10.27.10:59:52 Info: Adding hps_0 [altera_hps 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module hps_0
+2026.10.27.10:59:52 Info: Adding hps_only_master [altera_jtag_avalon_master 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module hps_only_master
+2026.10.27.10:59:52 Info: Adding jtag_uart [altera_avalon_jtag_uart 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module jtag_uart
+2026.10.27.10:59:52 Info: Adding led_pio [altera_avalon_pio 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module led_pio
+2026.10.27.10:59:52 Info: Adding mm_bridge_0 [altera_avalon_mm_bridge 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module mm_bridge_0
+2026.10.27.10:59:52 Info: Adding nv_engine_0 [nv_engine 1.0]
+2026.10.27.10:59:52 Info: Parameterizing module nv_engine_0
+2026.10.27.10:59:52 Info: Adding sysid_qsys [altera_avalon_sysid_qsys 21.1]
+2026.10.27.10:59:52 Info: Parameterizing module sysid_qsys
+2026.10.27.10:59:52 Info: Building connections
+2026.10.27.10:59:52 Info: Parameterizing connections
+2026.10.27.10:59:52 Info: Validating
+2026.10.27.11:00:04 Info: Done reading input file
+2026.10.27.11:00:10 Info: soc_system.button_pio: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+2026.10.27.11:00:10 Info: soc_system.dipsw_pio: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+2026.10.27.11:00:10 Info: soc_system.hps_0: HPS Main PLL counter settings: n = 0  m = 73
+2026.10.27.11:00:10 Info: soc_system.hps_0: HPS peripherial PLL counter settings: n = 0  m = 39
+2026.10.27.11:00:10 Warning: soc_system.hps_0: <b>"Configuration/HPS-to-FPGA user 0 clock frequency" (desired_cfg_clk_mhz)</b> requested 100.0 MHz, but only achieved 97.368421 MHz
+2026.10.27.11:00:10 Warning: soc_system.hps_0: <b>"QSPI clock frequency" (desired_qspi_clk_mhz)</b> requested 400.0 MHz, but only achieved 370.0 MHz
+2026.10.27.11:00:10 Warning: soc_system.hps_0: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.
+2026.10.27.11:00:10 Warning: soc_system.jtag_uart: JTAG UART IP input clock need to be at least double (2x) the operating frequency of JTAG TCK on board
+2026.10.27.11:00:10 Warning: soc_system.nv_engine_0.reset: No synchronous edges, but has associated clock
+2026.10.27.11:00:10 Info: soc_system.sysid_qsys: System ID is not assigned automatically. Edit the System ID parameter to provide a unique ID
+2026.10.27.11:00:10 Info: soc_system.sysid_qsys: Time stamp will be automatically updated when this component is generated.
+2026.10.27.11:00:13 Info: soc_system: Generating <b>soc_system</b> "<b>soc_system</b>" for QUARTUS_SYNTH
+2026.10.27.11:00:21 Info: Interconnect is inserted between master hps_0.h2f_lw_axi_master and slave mm_bridge_0.s0 because the master is of type axi and the slave is of type avalon.
+2026.10.27.11:00:26 Info: Interconnect is inserted between master hps_only_master.master and slave hps_0.f2h_axi_slave because the master is of type avalon and the slave is of type axi.
+2026.10.27.11:00:29 Warning: hps_0.f2h_irq0: Cannot connect clock for <b>irq_mapper_001.sender</b>
+2026.10.27.11:00:29 Warning: hps_0.f2h_irq0: Cannot connect reset for <b>irq_mapper_001.sender</b>
+2026.10.27.11:00:29 Warning: hps_0.f2h_irq1: Cannot connect clock for <b>irq_mapper_002.sender</b>
+2026.10.27.11:00:29 Warning: hps_0.f2h_irq1: Cannot connect reset for <b>irq_mapper_002.sender</b>
+2026.10.27.11:00:40 Info: ILC: "<b>soc_system</b>" instantiated <b>interrupt_latency_counter</b> "<b>ILC</b>"
+2026.10.27.11:00:41 Info: button_pio: Starting RTL generation for module 'soc_system_button_pio'
+2026.10.27.11:00:41 Info: button_pio:   Generation command is [exec C:/intelfpga_lite/21.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/21.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/21.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/21.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=soc_system_button_pio --dir=C:/Users/priya/AppData/Local/Temp/alt0753_163099054856405173.dir/0003_button_pio_gen/ --quartus_dir=C:/intelfpga_lite/21.1/quartus --verilog --config=C:/Users/priya/AppData/Local/Temp/alt0753_163099054856405173.dir/0003_button_pio_gen//soc_system_button_pio_component_configuration.pl  --do_build_sim=0  ]
+2026.10.27.11:00:42 Info: button_pio: Done RTL generation for module 'soc_system_button_pio'
+2026.10.27.11:00:42 Info: button_pio: "<b>soc_system</b>" instantiated <b>altera_avalon_pio</b> "<b>button_pio</b>"
+2026.10.27.11:00:42 Info: dipsw_pio: Starting RTL generation for module 'soc_system_dipsw_pio'
+2026.10.27.11:00:42 Info: dipsw_pio:   Generation command is [exec C:/intelfpga_lite/21.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/21.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/21.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/21.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=soc_system_dipsw_pio --dir=C:/Users/priya/AppData/Local/Temp/alt0753_163099054856405173.dir/0004_dipsw_pio_gen/ --quartus_dir=C:/intelfpga_lite/21.1/quartus --verilog --config=C:/Users/priya/AppData/Local/Temp/alt0753_163099054856405173.dir/0004_dipsw_pio_gen//soc_system_dipsw_pio_component_configuration.pl  --do_build_sim=0  ]
+2026.10.27.11:00:42 Info: dipsw_pio: Done RTL generation for module 'soc_system_dipsw_pio'
+2026.10.27.11:00:42 Info: dipsw_pio: "<b>soc_system</b>" instantiated <b>altera_avalon_pio</b> "<b>dipsw_pio</b>"
+2026.10.27.11:00:44 Info: f2sdram_only_master: "<b>soc_system</b>" instantiated <b>altera_jtag_avalon_master</b> "<b>f2sdram_only_master</b>"
+2026.10.27.11:00:44 Info: hps_0: "Running  for module: hps_0"
+2026.10.27.11:00:44 Info: hps_0: HPS Main PLL counter settings: n = 0  m = 73
+2026.10.27.11:00:45 Info: hps_0: HPS peripherial PLL counter settings: n = 0  m = 39
+2026.10.27.11:00:45 Warning: hps_0: <b>"Configuration/HPS-to-FPGA user 0 clock frequency" (desired_cfg_clk_mhz)</b> requested 100.0 MHz, but only achieved 97.368421 MHz
+2026.10.27.11:00:45 Warning: hps_0: <b>"QSPI clock frequency" (desired_qspi_clk_mhz)</b> requested 400.0 MHz, but only achieved 370.0 MHz
+2026.10.27.11:00:45 Warning: hps_0: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.
+2026.10.27.11:00:50 Info: hps_0: "<b>soc_system</b>" instantiated <b>altera_hps</b> "<b>hps_0</b>"
+2026.10.27.11:00:50 Info: jtag_uart: Starting RTL generation for module 'soc_system_jtag_uart'
+2026.10.27.11:00:50 Info: jtag_uart:   Generation command is [exec C:/intelfpga_lite/21.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/21.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/21.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/21.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=soc_system_jtag_uart --dir=C:/Users/priya/AppData/Local/Temp/alt0753_163099054856405173.dir/0005_jtag_uart_gen/ --quartus_dir=C:/intelfpga_lite/21.1/quartus --verilog --config=C:/Users/priya/AppData/Local/Temp/alt0753_163099054856405173.dir/0005_jtag_uart_gen//soc_system_jtag_uart_component_configuration.pl  --do_build_sim=0  ]
+2026.10.27.11:00:51 Info: jtag_uart: Done RTL generation for module 'soc_system_jtag_uart'
+2026.10.27.11:00:51 Info: jtag_uart: "<b>soc_system</b>" instantiated <b>altera_avalon_jtag_uart</b> "<b>jtag_uart</b>"
+2026.10.27.11:00:51 Info: led_pio: Starting RTL generation for module 'soc_system_led_pio'
+2026.10.27.11:00:51 Info: led_pio:   Generation command is [exec C:/intelfpga_lite/21.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/21.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/21.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/21.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/21.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=soc_system_led_pio --dir=C:/Users/priya/AppData/Local/Temp/alt0753_163099054856405173.dir/0006_led_pio_gen/ --quartus_dir=C:/intelfpga_lite/21.1/quartus --verilog --config=C:/Users/priya/AppData/Local/Temp/alt0753_163099054856405173.dir/0006_led_pio_gen//soc_system_led_pio_component_configuration.pl  --do_build_sim=0  ]
+2026.10.27.11:00:51 Info: led_pio: Done RTL generation for module 'soc_system_led_pio'
+2026.10.27.11:00:51 Info: led_pio: "<b>soc_system</b>" instantiated <b>altera_avalon_pio</b> "<b>led_pio</b>"
+2026.10.27.11:00:51 Info: mm_bridge_0: "<b>soc_system</b>" instantiated <b>altera_avalon_mm_bridge</b> "<b>mm_bridge_0</b>"
+2026.10.27.11:00:51 Info: nv_engine_0: "<b>soc_system</b>" instantiated <b>nv_engine</b> "<b>nv_engine_0</b>"
+2026.10.27.11:00:51 Info: sysid_qsys: "<b>soc_system</b>" instantiated <b>altera_avalon_sysid_qsys</b> "<b>sysid_qsys</b>"
+2026.10.27.11:00:54 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+2026.10.27.11:00:56 Info: mm_interconnect_0: "<b>soc_system</b>" instantiated <b>altera_mm_interconnect</b> "<b>mm_interconnect_0</b>"
+2026.10.27.11:01:04 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+2026.10.27.11:01:05 Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+2026.10.27.11:01:06 Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
+2026.10.27.11:01:07 Info: avalon_st_adapter_003: Inserting error_adapter: error_adapter_0
+2026.10.27.11:01:08 Info: avalon_st_adapter_004: Inserting error_adapter: error_adapter_0
+2026.10.27.11:01:08 Info: avalon_st_adapter_005: Inserting error_adapter: error_adapter_0
+2026.10.27.11:01:09 Info: avalon_st_adapter_006: Inserting error_adapter: error_adapter_0
+2026.10.27.11:01:16 Info: mm_interconnect_1: "<b>soc_system</b>" instantiated <b>altera_mm_interconnect</b> "<b>mm_interconnect_1</b>"
+2026.10.27.11:01:18 Info: mm_interconnect_2: "<b>soc_system</b>" instantiated <b>altera_mm_interconnect</b> "<b>mm_interconnect_2</b>"
+2026.10.27.11:01:23 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+2026.10.27.11:01:24 Info: mm_interconnect_3: "<b>soc_system</b>" instantiated <b>altera_mm_interconnect</b> "<b>mm_interconnect_3</b>"
+2026.10.27.11:01:25 Info: irq_mapper: "<b>soc_system</b>" instantiated <b>altera_irq_mapper</b> "<b>irq_mapper</b>"
+2026.10.27.11:01:25 Info: irq_mapper_001: "<b>soc_system</b>" instantiated <b>altera_irq_mapper</b> "<b>irq_mapper_001</b>"
+2026.10.27.11:01:25 Info: irq_mapper_002: "<b>soc_system</b>" instantiated <b>altera_irq_mapper</b> "<b>irq_mapper_002</b>"
+2026.10.27.11:01:25 Info: rst_controller: "<b>soc_system</b>" instantiated <b>altera_reset_controller</b> "<b>rst_controller</b>"
+2026.10.27.11:01:25 Info: jtag_phy_embedded_in_jtag_master: "<b>f2sdram_only_master</b>" instantiated <b>altera_jtag_dc_streaming</b> "<b>jtag_phy_embedded_in_jtag_master</b>"
+2026.10.27.11:01:25 Info: timing_adt: "<b>f2sdram_only_master</b>" instantiated <b>timing_adapter</b> "<b>timing_adt</b>"
+2026.10.27.11:01:25 Info: fifo: "<b>f2sdram_only_master</b>" instantiated <b>altera_avalon_sc_fifo</b> "<b>fifo</b>"
+2026.10.27.11:01:25 Info: b2p: "<b>f2sdram_only_master</b>" instantiated <b>altera_avalon_st_bytes_to_packets</b> "<b>b2p</b>"
+2026.10.27.11:01:25 Info: p2b: "<b>f2sdram_only_master</b>" instantiated <b>altera_avalon_st_packets_to_bytes</b> "<b>p2b</b>"
+2026.10.27.11:01:25 Info: transacto: "<b>f2sdram_only_master</b>" instantiated <b>altera_avalon_packets_to_master</b> "<b>transacto</b>"
+2026.10.27.11:01:25 Info: b2p_adapter: "<b>f2sdram_only_master</b>" instantiated <b>channel_adapter</b> "<b>b2p_adapter</b>"
+2026.10.27.11:01:25 Info: p2b_adapter: "<b>f2sdram_only_master</b>" instantiated <b>channel_adapter</b> "<b>p2b_adapter</b>"
+2026.10.27.11:01:25 Info: fpga_interfaces: "<b>hps_0</b>" instantiated <b>altera_interface_generator</b> "<b>fpga_interfaces</b>"
+2026.10.27.11:01:26 Info: hps_io: "<b>hps_0</b>" instantiated <b>altera_hps_io</b> "<b>hps_io</b>"
+2026.10.27.11:01:26 Info: mm_bridge_0_s0_translator: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_slave_translator</b> "<b>mm_bridge_0_s0_translator</b>"
+2026.10.27.11:01:26 Info: hps_0_h2f_lw_axi_master_agent: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_axi_master_ni</b> "<b>hps_0_h2f_lw_axi_master_agent</b>"
+2026.10.27.11:01:27 Info: mm_bridge_0_s0_agent: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_slave_agent</b> "<b>mm_bridge_0_s0_agent</b>"
+2026.10.27.11:01:27 Info: router: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_router</b> "<b>router</b>"
+2026.10.27.11:01:27 Info: router_002: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_router</b> "<b>router_002</b>"
+2026.10.27.11:01:27 Info: mm_bridge_0_s0_burst_adapter: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_burst_adapter</b> "<b>mm_bridge_0_s0_burst_adapter</b>"
+2026.10.27.11:01:27 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv</b>
+2026.10.27.11:01:27 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_avalon_st_pipeline_stage.sv</b>
+2026.10.27.11:01:27 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v</b>
+2026.10.27.11:01:27 Info: cmd_demux: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_demultiplexer</b> "<b>cmd_demux</b>"
+2026.10.27.11:01:27 Info: cmd_mux: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_multiplexer</b> "<b>cmd_mux</b>"
+2026.10.27.11:01:27 Info: rsp_demux: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_demultiplexer</b> "<b>rsp_demux</b>"
+2026.10.27.11:01:27 Info: rsp_mux: "<b>mm_interconnect_0</b>" instantiated <b>altera_merlin_multiplexer</b> "<b>rsp_mux</b>"
+2026.10.27.11:01:27 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv</b>
+2026.10.27.11:01:28 Info: avalon_st_adapter: "<b>mm_interconnect_0</b>" instantiated <b>altera_avalon_st_adapter</b> "<b>avalon_st_adapter</b>"
+2026.10.27.11:01:29 Info: mm_bridge_0_m0_translator: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_master_translator</b> "<b>mm_bridge_0_m0_translator</b>"
+2026.10.27.11:01:29 Info: mm_bridge_0_m0_agent: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_master_agent</b> "<b>mm_bridge_0_m0_agent</b>"
+2026.10.27.11:01:29 Info: router: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_router</b> "<b>router</b>"
+2026.10.27.11:01:29 Info: router_002: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_router</b> "<b>router_002</b>"
+2026.10.27.11:01:29 Info: mm_bridge_0_m0_limiter: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_traffic_limiter</b> "<b>mm_bridge_0_m0_limiter</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v</b>
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v</b>
+2026.10.27.11:01:29 Info: cmd_demux: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_demultiplexer</b> "<b>cmd_demux</b>"
+2026.10.27.11:01:29 Info: cmd_mux: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_multiplexer</b> "<b>cmd_mux</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv</b>
+2026.10.27.11:01:29 Info: rsp_demux: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_demultiplexer</b> "<b>rsp_demux</b>"
+2026.10.27.11:01:29 Info: rsp_mux: "<b>mm_interconnect_1</b>" instantiated <b>altera_merlin_multiplexer</b> "<b>rsp_mux</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv</b>
+2026.10.27.11:01:29 Info: hps_0_f2h_axi_slave_agent: "<b>mm_interconnect_2</b>" instantiated <b>altera_merlin_axi_slave_ni</b> "<b>hps_0_f2h_axi_slave_agent</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv</b>
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v</b>
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv</b>
+2026.10.27.11:01:29 Info: router: "<b>mm_interconnect_2</b>" instantiated <b>altera_merlin_router</b> "<b>router</b>"
+2026.10.27.11:01:29 Info: router_001: "<b>mm_interconnect_2</b>" instantiated <b>altera_merlin_router</b> "<b>router_001</b>"
+2026.10.27.11:01:29 Info: cmd_demux: "<b>mm_interconnect_2</b>" instantiated <b>altera_merlin_demultiplexer</b> "<b>cmd_demux</b>"
+2026.10.27.11:01:29 Info: cmd_mux: "<b>mm_interconnect_2</b>" instantiated <b>altera_merlin_multiplexer</b> "<b>cmd_mux</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv</b>
+2026.10.27.11:01:29 Info: rsp_demux: "<b>mm_interconnect_2</b>" instantiated <b>altera_merlin_demultiplexer</b> "<b>rsp_demux</b>"
+2026.10.27.11:01:29 Info: rsp_mux: "<b>mm_interconnect_2</b>" instantiated <b>altera_merlin_multiplexer</b> "<b>rsp_mux</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv</b>
+2026.10.27.11:01:29 Info: hps_0_f2h_axi_slave_wr_cmd_width_adapter: "<b>mm_interconnect_2</b>" instantiated <b>altera_merlin_width_adapter</b> "<b>hps_0_f2h_axi_slave_wr_cmd_width_adapter</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv</b>
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv</b>
+2026.10.27.11:01:29 Info: router: "<b>mm_interconnect_3</b>" instantiated <b>altera_merlin_router</b> "<b>router</b>"
+2026.10.27.11:01:29 Info: router_001: "<b>mm_interconnect_3</b>" instantiated <b>altera_merlin_router</b> "<b>router_001</b>"
+2026.10.27.11:01:29 Info: router_003: "<b>mm_interconnect_3</b>" instantiated <b>altera_merlin_router</b> "<b>router_003</b>"
+2026.10.27.11:01:29 Info: cmd_demux: "<b>mm_interconnect_3</b>" instantiated <b>altera_merlin_demultiplexer</b> "<b>cmd_demux</b>"
+2026.10.27.11:01:29 Info: cmd_mux: "<b>mm_interconnect_3</b>" instantiated <b>altera_merlin_multiplexer</b> "<b>cmd_mux</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv</b>
+2026.10.27.11:01:29 Info: rsp_demux: "<b>mm_interconnect_3</b>" instantiated <b>altera_merlin_demultiplexer</b> "<b>rsp_demux</b>"
+2026.10.27.11:01:29 Info: rsp_mux: "<b>mm_interconnect_3</b>" instantiated <b>altera_merlin_multiplexer</b> "<b>rsp_mux</b>"
+2026.10.27.11:01:29 Info: Reusing file <b>F:/Projects/FPGA-Adaptive-Night-Vision/quartus/soc/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv</b>
+2026.10.27.11:01:30 Info: avalon_st_adapter: "<b>mm_interconnect_3</b>" instantiated <b>altera_avalon_st_adapter</b> "<b>avalon_st_adapter</b>"
+2026.10.27.11:01:54 Error: border: Error during execution of script generate_hps_sdram.tcl: seq: Error during execution of "{C:/intelfpga_lite/21.1/quartus/../nios2eds/Nios II Command Shell.bat} make all 2>> stderr.txt": child process exited abnormally
+2026.10.27.11:01:54 Error: border: Error during execution of script generate_hps_sdram.tcl: seq: Execution of command "{C:/intelfpga_lite/21.1/quartus/../nios2eds/Nios II Command Shell.bat} make all 2>> stderr.txt" failed
+2026.10.27.11:01:54 Error: border: Error during execution of script generate_hps_sdram.tcl: seq: child process exited abnormally
+2026.10.27.11:01:54 Error: border: Error during execution of script generate_hps_sdram.tcl: seq: add_fileset_file: No such file C:/Users/priya/AppData/Local/Temp/alt0753_4944466418129465019.dir/0004_seq_gen/hps_AC_ROM.hex
+2026.10.27.11:01:54 Error: border: Error during execution of script generate_hps_sdram.tcl: Generation stopped, 3 or more modules remaining
+2026.10.27.11:01:54 Error: border: Execution of script generate_hps_sdram.tcl failed
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:32 Info:
+2026.10.27.11:01:54 Error: border: ********************************************************************************************************************
+2026.10.27.11:01:54 Error: border: 
+2026.10.27.11:01:54 Error: border: Use qsys-generate for a simpler command-line interface for generating IP.
+2026.10.27.11:01:54 Error: border: 
+2026.10.27.11:01:54 Error: border: Run ip-generate with switch --remove-qsys-generate-warning to prevent this notice from appearing in subsequent runs.
+2026.10.27.11:01:54 Error: border: 
+2026.10.27.11:01:54 Error: border: ********************************************************************************************************************
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:35 Warning: Ignored parameter assignment device=5CSXFC6D6F31C6
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:35 Warning: Ignored parameter assignment extended_family_support=true
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:41 Warning: hps_sdram: 'Quick' simulation modes are NOT timing accurate. Some simulation memory models may issue warnings or errors
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:41 Warning: hps_sdram.seq: This module has no ports or interfaces
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:41 Warning: hps_sdram.p0: p0.scc must be exported, or connected to a matching conduit.
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:41 Warning: hps_sdram.as: as.afi_init_cal_req must be exported, or connected to a matching conduit.
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:41 Warning: hps_sdram.as: as.tracking must be exported, or connected to a matching conduit.
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:41 Warning: hps_sdram.c0: c0.status must be exported, or connected to a matching conduit.
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:41 Warning: hps_sdram.p0: p0.avl must be connected to an Avalon-MM master
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:41 Info: hps_sdram: Generating altera_mem_if_hps_emif "hps_sdram" for QUARTUS_SYNTH
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:44 Info: pll: "hps_sdram" instantiated altera_mem_if_hps_pll "pll"
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:44 Info: p0: Generating clock pair generator
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:45 Info: p0: Generating hps_sdram_p0_altdqdqs
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0:
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0: *****************************
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0:
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0: Remember to run the hps_sdram_p0_pin_assignments.tcl
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0: script after running Synthesis and before Fitting.
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0:
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0: *****************************
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0:
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:52 Info: p0: "hps_sdram" instantiated altera_mem_if_ddr3_hard_phy_core "p0"
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:53 Error: seq: Error during execution of "{C:/intelfpga_lite/21.1/quartus/../nios2eds/Nios II Command Shell.bat} make all 2>> stderr.txt": child process exited abnormally
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:53 Error: seq: Execution of command "{C:/intelfpga_lite/21.1/quartus/../nios2eds/Nios II Command Shell.bat} make all 2>> stderr.txt" failed
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:53 Error: seq: child process exited abnormally
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:54 Error: seq: add_fileset_file: No such file C:/Users/priya/AppData/Local/Temp/alt0753_4944466418129465019.dir/0004_seq_gen/hps_AC_ROM.hex
+2026.10.27.11:01:54 Error: border: while executing
+2026.10.27.11:01:54 Error: border: "add_fileset_file $file_name [::alt_mem_if::util::hwtcl_utils::get_file_type $file_name 0] PATH $file_pathname"
+2026.10.27.11:01:54 Error: border: ("foreach" body line 4)
+2026.10.27.11:01:54 Error: border: invoked from within
+2026.10.27.11:01:54 Error: border: "foreach file_pathname $return_files_sw {
+2026.10.27.11:01:54 Error: border: 		_dprint 1 "Preparing to add $file_pathname"
+2026.10.27.11:01:54 Error: border: 		set file_name [file tail $file_pathname]
+2026.10.27.11:01:54 Error: border: 		add_fileset_file $..."
+2026.10.27.11:01:54 Error: border: (procedure "generate_sw" line 18)
+2026.10.27.11:01:54 Error: border: invoked from within
+2026.10.27.11:01:54 Error: border: "generate_sw $name $fileset"
+2026.10.27.11:01:54 Error: border: ("if" then script line 4)
+2026.10.27.11:01:54 Error: border: invoked from within
+2026.10.27.11:01:54 Error: border: "if {[string compare -nocase $fileset QUARTUS_SYNTH] == 0} {
+2026.10.27.11:01:54 Error: border: 		set top_level_file "altera_mem_if_hhp_qseq_synth_top.v"
+2026.10.27.11:01:54 Error: border: 		add_fileset_file $top_level_fi..."
+2026.10.27.11:01:54 Error: border: (procedure "generate_files" line 4)
+2026.10.27.11:01:54 Error: border: invoked from within
+2026.10.27.11:01:54 Error: border: "generate_files $name QUARTUS_SYNTH"
+2026.10.27.11:01:54 Error: border: (procedure "generate_synth" line 3)
+2026.10.27.11:01:54 Error: border: invoked from within
+2026.10.27.11:01:54 Error: border: "generate_synth altera_mem_if_hhp_qseq_synth_top"
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:54 Info: seq: "hps_sdram" instantiated altera_mem_if_hhp_ddr3_qseq "seq"
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:54 Error: Generation stopped, 3 or more modules remaining
+2026.10.27.11:01:54 Error: border: 2026.10.27.11:01:54 Info: hps_sdram: Done "hps_sdram" with 7 modules, 33 files
+2026.10.27.11:01:55 Info: border: "<b>hps_io</b>" instantiated <b>altera_interface_generator</b> "<b>border</b>"
+2026.10.27.11:01:55 Error: Generation stopped, 2 or more modules remaining
+2026.10.27.11:01:55 Info: soc_system: Done "<b>soc_system</b>" with 68 modules, 147 files
+2026.10.27.11:01:56 Error: qsys-generate failed with exit code 1: 66 Errors, 12 Warnings
+2026.10.27.11:01:56 Info: Finished: <b>Create HDL design files for synthesis</b>
+exit=3

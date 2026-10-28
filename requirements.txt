@@ -1,0 +1,9 @@
+numpy
+scipy
+scikit-image
+opencv-python
+matplotlib
+pytest
+pillow
+imageio
+imageio-ffmpeg   # only for scripts/make_demo_media.py (H.264 output)

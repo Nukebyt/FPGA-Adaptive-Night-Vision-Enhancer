@@ -1,0 +1,44 @@
+== patch_qip
+qip: 0 lines restored, 0 files copied back from quartus/soc/ref/submodules, 23 reference files no longer generated (ignored)
+== quartus_map
+== quartus_cdb --merge
+== pin assignments: soc_system/synthesis/submodules/hps_sdram_p0_pin_assignments.tcl
+== quartus_sh --flow compile (map, fit, sta, asm)
+== compressed rbf
+-rw-r--r-- 1 priya 197609 3297112 Oct 27 14:18 output_files/DE10_Standard_NV.rbf
+-rw-r--r-- 1 priya 197609 7427947 Oct 27 14:16 output_files/DE10_Standard_NV.sof
+clocks in slack tables: ['CLOCK_50', 'altera_reserved_tck', 'pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]', 'pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk', 'soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|afi_clk_write_clk', 'soc_system:u0|soc_system_hps_0:hps_0|soc_system_hps_0_hps_io:hps_io|soc_system_hps_0_hps_io_border:border|hps_sdram:hps_sdram_inst|hps_sdram_pll:pll|pll_write_clk_dq_write_clk']
+ok    soc_system:u0|soc_system_hps_0:hps_0|soc Slow 1100mV 85C Model Setup slack    1.730  TNS    0.000
+ok    altera_reserved_tck                      Slow 1100mV 85C Model Setup slack    9.790  TNS    0.000
+ok    pll_inst|altera_pll_i|general[0].gpll~PL Slow 1100mV 85C Model Setup slack   10.559  TNS    0.000
+ok    CLOCK_50                                 Slow 1100mV 85C Model Setup slack   12.762  TNS    0.000
+ok    soc_system:u0|soc_system_hps_0:hps_0|soc Slow 1100mV 85C Model Hold slack    0.143  TNS    0.000
+ok    pll_inst|altera_pll_i|general[0].gpll~PL Slow 1100mV 85C Model Hold slack    0.232  TNS    0.000
+ok    CLOCK_50                                 Slow 1100mV 85C Model Hold slack    0.366  TNS    0.000
+ok    altera_reserved_tck                      Slow 1100mV 85C Model Hold slack    0.372  TNS    0.000
+ok    soc_system:u0|soc_system_hps_0:hps_0|soc Slow 1100mV 0C Model Setup slack    1.727  TNS    0.000
+ok    altera_reserved_tck                      Slow 1100mV 0C Model Setup slack   10.196  TNS    0.000
+ok    pll_inst|altera_pll_i|general[0].gpll~PL Slow 1100mV 0C Model Setup slack   11.016  TNS    0.000
+ok    CLOCK_50                                 Slow 1100mV 0C Model Setup slack   13.077  TNS    0.000
+ok    pll_inst|altera_pll_i|general[0].gpll~PL Slow 1100mV 0C Model Hold  slack    0.135  TNS    0.000
+ok    soc_system:u0|soc_system_hps_0:hps_0|soc Slow 1100mV 0C Model Hold  slack    0.162  TNS    0.000
+ok    altera_reserved_tck                      Slow 1100mV 0C Model Hold  slack    0.359  TNS    0.000
+ok    CLOCK_50                                 Slow 1100mV 0C Model Hold  slack    0.368  TNS    0.000
+ok    soc_system:u0|soc_system_hps_0:hps_0|soc Fast 1100mV 85C Model Setup slack    2.110  TNS    0.000
+ok    altera_reserved_tck                      Fast 1100mV 85C Model Setup slack   11.964  TNS    0.000
+ok    pll_inst|altera_pll_i|general[0].gpll~PL Fast 1100mV 85C Model Setup slack   13.194  TNS    0.000
+ok    CLOCK_50                                 Fast 1100mV 85C Model Setup slack   14.731  TNS    0.000
+ok    soc_system:u0|soc_system_hps_0:hps_0|soc Fast 1100mV 85C Model Hold slack    0.084  TNS    0.000
+ok    pll_inst|altera_pll_i|general[0].gpll~PL Fast 1100mV 85C Model Hold slack    0.147  TNS    0.000
+ok    altera_reserved_tck                      Fast 1100mV 85C Model Hold slack    0.157  TNS    0.000
+ok    CLOCK_50                                 Fast 1100mV 85C Model Hold slack    0.185  TNS    0.000
+ok    soc_system:u0|soc_system_hps_0:hps_0|soc Fast 1100mV 0C Model Setup slack    2.110  TNS    0.000
+ok    altera_reserved_tck                      Fast 1100mV 0C Model Setup slack   12.298  TNS    0.000
+ok    pll_inst|altera_pll_i|general[0].gpll~PL Fast 1100mV 0C Model Setup slack   14.213  TNS    0.000
+ok    CLOCK_50                                 Fast 1100mV 0C Model Setup slack   15.395  TNS    0.000
+ok    soc_system:u0|soc_system_hps_0:hps_0|soc Fast 1100mV 0C Model Hold  slack    0.077  TNS    0.000
+ok    pll_inst|altera_pll_i|general[0].gpll~PL Fast 1100mV 0C Model Hold  slack    0.087  TNS    0.000
+ok    altera_reserved_tck                      Fast 1100mV 0C Model Hold  slack    0.139  TNS    0.000
+ok    CLOCK_50                                 Fast 1100mV 0C Model Hold  slack    0.176  TNS    0.000
+STA: PASS
+exit=0

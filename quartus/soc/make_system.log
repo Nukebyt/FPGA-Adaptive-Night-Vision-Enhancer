@@ -1,0 +1,26 @@
+2026.10.27.10:58:37 Info: Doing: <b>qsys-script --script=make_system.tcl</b>
+2026.10.27.10:58:41 Info: load_system soc_system.qsys
+2026.10.27.10:59:00 Info: remove_instance cfar_bridge_0
+2026.10.27.10:59:00 Info: get_interfaces 
+2026.10.27.10:59:00 Info: add_instance nv_engine_0 nv_engine 
+2026.10.27.10:59:00 Warning: add_connection: Extra arguments ignored <b>clock</b>
+2026.10.27.10:59:00 Info: add_connection clk_0.clk nv_engine_0.clock
+2026.10.27.10:59:00 Warning: add_connection: Extra arguments ignored <b>reset</b>
+2026.10.27.10:59:00 Info: add_connection clk_0.clk_reset nv_engine_0.reset
+2026.10.27.10:59:00 Warning: add_connection: Extra arguments ignored <b>avalon</b>
+2026.10.27.10:59:00 Info: add_connection mm_bridge_0.m0 nv_engine_0.csr
+2026.10.27.10:59:00 Info: set_connection_parameter_value mm_bridge_0.m0/nv_engine_0.csr baseAddress 0x10000
+2026.10.27.10:59:00 Warning: add_connection: Extra arguments ignored <b>avalon</b>
+2026.10.27.10:59:00 Info: add_connection fpga_only_master.master nv_engine_0.csr
+2026.10.27.10:59:00 Info: set_connection_parameter_value fpga_only_master.master/nv_engine_0.csr baseAddress 0x10000
+2026.10.27.10:59:00 Warning: add_connection: Extra arguments ignored <b>avalon</b>
+2026.10.27.10:59:00 Info: add_connection nv_engine_0.rd hps_0.f2h_sdram0_data
+2026.10.27.10:59:00 Info: set_connection_parameter_value nv_engine_0.rd/hps_0.f2h_sdram0_data baseAddress 0x0000
+2026.10.27.10:59:00 Warning: add_connection: Extra arguments ignored <b>avalon</b>
+2026.10.27.10:59:00 Info: add_connection nv_engine_0.wr hps_0.f2h_sdram0_data
+2026.10.27.10:59:00 Info: set_connection_parameter_value nv_engine_0.wr/hps_0.f2h_sdram0_data baseAddress 0x0000
+2026.10.27.10:59:00 Info: add_interface nv_status conduit end
+2026.10.27.10:59:00 Info: set_interface_property nv_status EXPORT_OF nv_engine_0.status
+2026.10.27.10:59:00 Info: set_instance_parameter_value clk_0 clockFrequency 25000000
+2026.10.27.10:59:09 Info: set_instance_parameter_value clk_0 clockFrequencyKnown true
+2026.10.27.10:59:09 Info: save_system soc_system.qsys

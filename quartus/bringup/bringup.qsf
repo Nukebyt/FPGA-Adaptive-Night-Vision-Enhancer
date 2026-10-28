@@ -1,0 +1,23 @@
+# bringup.qsf -- DE10-Standard bring-up design (roadmap 0.5b)
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSXFC6D6F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY bringup_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 21.1
+set_global_assignment -name LAST_QUARTUS_VERSION "21.1.0 Lite Edition"
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 4
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+set_global_assignment -name VERILOG_FILE ../../rtl/bringup_top.v
+set_global_assignment -name VERILOG_FILE ../../rtl/vga_timing.v
+set_global_assignment -name VERILOG_FILE ../../rtl/test_pattern.v
+set_global_assignment -name VERILOG_FILE ../../rtl/reset_sync.v
+set_global_assignment -name VERILOG_FILE ../../rtl/hex7seg.v
+set_global_assignment -name VERILOG_FILE ip/pll25/pll25.v
+set_global_assignment -name QIP_FILE ip/pll25/pll25.qip
+set_global_assignment -name SDC_FILE bringup.sdc
+
+# Pin locations and IO standards: generated from the Terasic golden top (scripts/gen_pins.sh)
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../pins/de10_nv_pins.tcl
+
+# Unused pins (incl. HPS-side pins, which this design does not instantiate)
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED WITH WEAK PULL-UP"

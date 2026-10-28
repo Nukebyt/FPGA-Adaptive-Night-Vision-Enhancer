@@ -1,0 +1,39 @@
+# core.qsf -- synthesis/timing check of nv_core at 640x480 on the DE10-Standard device (no board pins: virtual pins)
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSXFC6D6F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY nv_synth_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 21.1
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 4
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name SDC_FILE core.sdc
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_synth_top.v
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_core.v
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_temporal.v
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_spatial.v
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_tone.v
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_sharpen.v
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_ctrl.v
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_hist.v
+set_global_assignment -name VERILOG_FILE ../../rtl/nv_noise.v
+set_global_assignment -name VERILOG_FILE ../../rtl/win3x3.v
+set_global_assignment -name VERILOG_FILE ../../rtl/ram_sdp.v
+set_global_assignment -name VERILOG_FILE ../../rtl/seq_div.v
+set_global_assignment -name VERILOG_FILE ../../rtl/rom/rom_gamma.v
+set_global_assignment -name VERILOG_FILE ../../rtl/rom/rom_log2.v
+set_global_assignment -name VERILOG_FILE ../../rtl/rom/rom_exp2.v
+set_global_assignment -name VERILOG_FILE ../../rtl/rom/rom_recip.v
+set_global_assignment -name VERILOG_FILE ../../rtl/rom/rom_motion.v
+set_instance_assignment -name VIRTUAL_PIN ON -to rst_n
+set_instance_assignment -name VIRTUAL_PIN ON -to soft_reset
+set_instance_assignment -name VIRTUAL_PIN ON -to ctl[*]
+set_instance_assignment -name VIRTUAL_PIN ON -to in_valid
+set_instance_assignment -name VIRTUAL_PIN ON -to in_sof
+set_instance_assignment -name VIRTUAL_PIN ON -to in_data[*]
+set_instance_assignment -name VIRTUAL_PIN ON -to out_valid
+set_instance_assignment -name VIRTUAL_PIN ON -to out_sof
+set_instance_assignment -name VIRTUAL_PIN ON -to out_eof
+set_instance_assignment -name VIRTUAL_PIN ON -to out_data[*]
+set_instance_assignment -name VIRTUAL_PIN ON -to ready
+set_instance_assignment -name VIRTUAL_PIN ON -to err_overrun
+set_instance_assignment -name VIRTUAL_PIN ON -to err_notready
+set_instance_assignment -name VIRTUAL_PIN ON -to t_lg[*]
